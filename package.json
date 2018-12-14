@@ -2,15 +2,25 @@
   "name": "2i2",
   "version": "0.0.1",
   "description": "Regular pet project",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "lzdyd",
   "license": "ISC",
   "engines": {
     "yarn": ">=1.10.1",
     "node": ">=8.12.0"
+  },
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint --debug app/",
+    "lint:write": "eslint --debug app/ --fix",
+    "prettier": "prettier --write app/**/*.js"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.(js|jsx)": ["npm run lint:write", "git add"]
   },
   "resolutions": {
     "babel-core": "7.0.0-bridge.0"
@@ -47,6 +57,8 @@
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-prettier": "^3.0.0",
     "eslint-plugin-react": "^7.11.1",
+    "husky": "^1.2.1",
+    "lint-staged": "^8.1.0",
     "prettier": "^1.15.3",
     "stylelint": "^9.9.0",
     "stylelint-config-recommended": "^2.1.0",
